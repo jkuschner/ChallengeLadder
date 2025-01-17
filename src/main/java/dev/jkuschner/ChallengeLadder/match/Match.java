@@ -1,5 +1,6 @@
 package dev.jkuschner.ChallengeLadder.match;
 
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Positive;
 import java.time.LocalDateTime;
 
@@ -13,5 +14,11 @@ public record Match(
         @Positive
         Integer player2,
 
-        LocalDateTime date
+        LocalDateTime date,
+
+        @NotEmpty
+        String score,
+
+        @Positive
+        Integer winner
 ) {}

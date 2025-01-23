@@ -62,6 +62,10 @@ public class MatchRepository {
                 .listOfRows()
                 .size();
     }
+
+    public void saveAll(List<Match> matches) {
+        matches.stream().forEach(this::create);
+    }
     /*
     public List<Match> findAll() {
         return matches;

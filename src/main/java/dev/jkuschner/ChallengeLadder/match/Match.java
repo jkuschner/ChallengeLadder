@@ -15,6 +15,7 @@ public record Match(
         Integer player2,
 
         LocalDateTime date,
+        //TODO refactor date to be named matchDate
 
         @NotEmpty
         String score,

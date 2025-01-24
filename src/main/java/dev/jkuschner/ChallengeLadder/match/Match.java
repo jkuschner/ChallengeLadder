@@ -14,8 +14,8 @@ public record Match(
         @Positive
         Integer player2,
 
-        LocalDateTime date,
-        //TODO refactor date to be named matchDate
+        LocalDateTime matchDate,
+        //TODO refactor matchDate to be named matchDate
 
         @NotEmpty
         String score,

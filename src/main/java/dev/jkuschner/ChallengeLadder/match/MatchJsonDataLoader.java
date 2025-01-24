@@ -29,6 +29,7 @@ public class MatchJsonDataLoader implements CommandLineRunner {
                 Matches allMatches = objectMapper.readValue(inputStream, Matches.class);
                 log.info("Reading {} matches from JSON data and saving to database.", allMatches.matches().size());
                 matchRepository.saveAll(allMatches.matches());
+                log.info("Saving all {} matches to matchRepository.", allMatches.matches().size());
             } catch (IOException e) {
                 throw new RuntimeException("Failed to read JSON data", e);
             }

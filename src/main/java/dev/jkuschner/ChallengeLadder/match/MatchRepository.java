@@ -34,7 +34,7 @@ public class MatchRepository {
 
     public void create(Match match) {
         var updated = jdbcClient.sql("INSERT INTO matches(id,player1,player2,match_date,score,winner) values(?,?,?,?,?,?)")
-                .params(List.of(match.id(), match.player1(), match.player2(), match.date(), match.score(), match.winner()))
+                .params(List.of(match.id(), match.player1(), match.player2(), match.matchDate(), match.score(), match.winner()))
                 .update();
 
         Assert.state(updated == 1, "Failed to create match " + match.id());
@@ -42,7 +42,7 @@ public class MatchRepository {
 
     public void update(Match match, Integer id) {
         var updated = jdbcClient.sql("update matches set player1 = ?, player2 = ?, match_date = ?, score = ?, winner = ? where id = ?")
-                .params(List.of(match.player1(), match.player2(), match.date(), match.score(), match.winner(), id))
+                .params(List.of(match.player1(), match.player2(), match.matchDate(), match.score(), match.winner(), id))
                 .update();
 
         Assert.state(updated == 1, "Failed to update match " + match.id());

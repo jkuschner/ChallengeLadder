@@ -2,8 +2,10 @@ package dev.jkuschner.ChallengeLadder.player;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.Assert;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,24 +20,31 @@ public class PlayerRepository {
     }
 
     public List<Player> findAll() {
-        // TODO: implement
-        return null;
+        return jdbcClient.sql("select * from players")
+                .query(Player.class)
+                .list();
     }
 
     public Optional<Player> findById(Integer id) {
-        // TODO: implement
-        return null;
+        return jdbcClient.sql("SELECT id,name FROM players WHERE id = :id")
+                .param("id", id)
+                .query(Player.class)
+                .optional();
     }
 
     public void create(Player player) {
-        //TODO: implement
-        // make sure players have unique names
-        // new players start with an empty match history
+        // TODO make sure players have unique names
+        var updated = jdbcClient.sql("INSERT INTO players(id, name) values(?,?)")
+                .params(List.of(player.id(), player.name()))
+                .update();
+        Assert.state(updated == 1, "Failed to create player " + player.id());
     }
 
     public void update(Player player, Integer id) {
-        // TODO: implement
-        // consider overloading to handle name changes vs. match history updates
+        var updated = jdbcClient.sql("update players set name = ? where id = ?")
+                .params(List.of(player.name(), id))
+                .update();
+        Assert.state(updated == 1, "Failed to update player " + player.id());
     }
 
     public void delete(Integer id) {
@@ -44,8 +53,10 @@ public class PlayerRepository {
     }
 
     public int count() {
-        // TODO: implement
-        return 0;
+        return jdbcClient.sql("select * from players")
+                .query()
+                .listOfRows()
+                .size();
     }
 
     public void saveAll(List<Player> players) {

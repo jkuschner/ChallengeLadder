@@ -1,6 +1,8 @@
-package dev.jkuschner.ChallengeLadder.match;
+package dev.jkuschner.ChallengeLadder;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dev.jkuschner.ChallengeLadder.match.MatchRepository;
+import dev.jkuschner.ChallengeLadder.match.Matches;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.asm.TypeReference;
@@ -11,13 +13,13 @@ import java.io.IOException;
 import java.io.InputStream;
 
 @Component
-public class MatchJsonDataLoader implements CommandLineRunner {
+public class JsonDataLoader implements CommandLineRunner {
 
-    private static final Logger log = LoggerFactory.getLogger(MatchJsonDataLoader.class);
+    private static final Logger log = LoggerFactory.getLogger(JsonDataLoader.class);
     private final MatchRepository matchRepository;
     private final ObjectMapper objectMapper;
 
-    public MatchJsonDataLoader(MatchRepository matchRepository, ObjectMapper objectMapper) {
+    public JsonDataLoader(MatchRepository matchRepository, ObjectMapper objectMapper) {
         this.matchRepository = matchRepository;
         this.objectMapper = objectMapper;
     }

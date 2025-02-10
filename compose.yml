@@ -2,7 +2,7 @@
     postgres:
       image: 'postgres:latest'
       environment:
-        - 'POSTGRES_DB=matches'
+        - 'POSTGRES_DB=challenge_ladder'
         - 'POSTGRES_PASSWORD=password'
         - 'POSTGRES_USER=josh'
       ports:

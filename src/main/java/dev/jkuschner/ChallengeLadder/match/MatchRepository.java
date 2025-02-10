@@ -41,6 +41,7 @@ public class MatchRepository {
     }
 
     public void update(Match match, Integer id) {
+        // TODO: make sure match changes also propagate to players' match history
         var updated = jdbcClient.sql("update matches set player1 = ?, player2 = ?, match_date = ?, score = ?, winner = ? where id = ?")
                 .params(List.of(match.player1(), match.player2(), match.matchDate(), match.score(), match.winner(), id))
                 .update();
@@ -67,6 +68,8 @@ public class MatchRepository {
         matches.stream().forEach(this::create);
     }
     /*
+    *** IN-MEMORY List REPRESENTATION(no database) ***
+
     public List<Match> findAll() {
         return matches;
     }

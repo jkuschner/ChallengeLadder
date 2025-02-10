@@ -1,0 +1,20 @@
+{
+  "players": [
+    {
+      "id": 1,
+      "name": "Edward Elric"
+    },
+    {
+      "id": 2,
+      "name": "Eren Jaeger"
+    },
+    {
+      "id": 3,
+      "name": "Rengoku Kyojuro"
+    },
+    {
+      "id": 4,
+      "name": "Lelouch Lamperouge"
+    }
+  ]
+}
